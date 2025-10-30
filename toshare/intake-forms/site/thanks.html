@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Thanks!</title>
+    <link rel="stylesheet" href="/assets/css/tokens.css" />
+    <link rel="stylesheet" href="/assets/css/components.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <meta name="theme-color" content="#0b0f14" />
+    <link rel="manifest" href="/manifest.webmanifest" crossorigin="use-credentials" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta name="apple-mobile-web-app-title" content="Intake" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/icons/pwa-ios-180.png" />
+    <link rel="icon" href="/favicon.ico" sizes="any" />
+  </head>
+  <body>
+    <main class="container">
+      <section class="hero" role="region" aria-label="Submission received">
+        <div class="thanks__top" aria-hidden="true">
+          <svg class="thanks__logo"><use href="/assets/icons/dolphin.svg#hhgttg-dolphin"></use></svg>
+        </div>
+        <h1>Thanks for all the fish!</h1>
+        <p class="hero__hint">Your submission has been received. We’ll take you back automatically in a moment. <a id="thanks-close-now" class="link--subtle" href="/index.html">Close now</a></p>
+      </section>
+    </main>
+
+    <script>
+      (function () {
+        var redirected = false;
+        var link = document.getElementById('thanks-close-now');
+        if (link) { link.addEventListener('click', function () { redirected = true; }); }
+        setTimeout(function () { if (!redirected) window.location.href = '/index.html'; }, 3000);
+      })();
+    </script>
+
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function () {
+          navigator.serviceWorker.register('/sw.js').catch(function (err) {
+            console.warn('SW registration failed:', err);
+          });
+        });
+      }
+    </script>
+  </body>
+</html>

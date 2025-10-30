@@ -1,0 +1,51 @@
+:root{
+  /* Core backgrounds & text */
+  --bg-page: #0b0f14;
+  --bg-surface: #0e1520;
+  --text-default: #e6eef8;
+  --text-on-dark: #04111f; /* dark text for high contrast on warm/light CTA backgrounds */
+  --white: #ffffff;
+  --navy: #0e1520;
+
+  /* Brand & accents */
+  --border-accent-warm: #f6a14a; /* warm orange */
+  --blue-mid: #57b3ff;
+  --blue-light: #a6d4ff;
+  --orange-mid: #f6a14a;
+  --orange-dark: #cc7f2b;
+
+  /* Surfaces & borders */
+  --border-subtle: #1f2a3a;
+  --hl-warm-bg: #2a1c12;
+  --hl-warm-text: #ffd7a3;
+  --hl-cool-bg: #132235;
+  --hl-cool-text: #cde6ff;
+  --hl-inverse-bg: #e6eef8;
+  --hl-inverse-text: #0b0f14;
+
+  /* Buttons (size & shape) */
+  --btn-font-weight: 700;
+  --btn-radius: 10px;
+  --btn-min-width: 8.5rem;
+  --btn-shadow: none;
+
+  --btn-font-size-sm: .9rem;   --btn-height-sm: 38px; --btn-pad-y-sm: .45rem; --btn-pad-x-sm: .7rem; --btn-gap-sm: .4rem;
+  --btn-font-size-md: 1rem;    --btn-height-md: 44px; --btn-pad-y-md: .6rem;  --btn-pad-x-md: .9rem; --btn-gap-md: .5rem;
+  --btn-font-size-lg: 1.125rem;--btn-height-lg: 52px; --btn-pad-y-lg: .75rem; --btn-pad-x-lg: 1.1rem;--btn-gap-lg: .6rem;
+
+  --btn-compact-font-size: .875rem; --btn-compact-height: 36px; --btn-compact-pad-y: .35rem; --btn-compact-pad-x: .6rem; --btn-compact-gap: .4rem;
+
+  /* Button colors */
+  --btn-primary-bg: var(--border-accent-warm);
+  --btn-primary-text: var(--text-on-dark);
+  --btn-disabled-bg: #263142;    --btn-disabled-text: #9fb3c8; --btn-disabled-border: #2a3a50;
+  --btn-danger-border: #cc3b3b;
+
+  /* Icons in buttons */
+  --btn-icon-color: currentColor; --btn-icon-opacity: 0.9;
+  --btn-icon-size-sm: 18px; --btn-icon-size-md: 20px; --btn-icon-size-lg: 22px;
+  --btn-icon-only-size-md: 44px; --btn-icon-only-radius: 10px;
+
+  /* Focus visuals */
+  --focus-ring-offset: 2px;
+}

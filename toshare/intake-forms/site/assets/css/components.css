@@ -1,0 +1,495 @@
+/* components.css 
+ Component styles that consume tokens from tokens.css. 
+ Load AFTER tokens.css. 
+*/ 
+/* --- Brand font (kept here with typography consumers) --- */ 
+/* --- Base Typography & Links --- */ 
+/* Body defaults: readable on mobile */ 
+body { 
+ font-family: 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif; 
+ font-weight: 400; /* Regular */ 
+ line-height: 1.6; /* Comfortable for paragraphs */ 
+ color: var(--text-default); 
+} 
+/* Display headings retain the brand voice */ 
+h1, h2 { 
+ font-family: 'Roboto', Arial, sans-serif; 
+ font-weight: 400; /* Avoid faux-bold with Filmotype */ 
+ letter-spacing: 0.02em; 
+ color: var(--text-default); 
+} 
+/* Supporting headings & UI labels favor clarity */ 
+h3, h4, h5, h6 { 
+ font-family: 'Roboto', 'Segoe UI', Arial, Helvetica, sans-serif; 
+ font-weight: 500; /* Medium for subtle emphasis */ 
+ letter-spacing: 0.02em; 
+ color: var(--text-default); 
+} 
+/* Inline emphasis */ 
+strong, b { font-weight: 700; } 
+/* Links & accents keep your existing color tokens */ 
+a, .accent, .barcode-label { 
+ color: var(--border-accent-warm); 
+ text-decoration: none; 
+ font-weight: 700; /* Maps to Roboto 700 */ 
+} 
+a:hover, .accent:hover { color: var(--blue-mid); } 
+/* CTAs and buttons leverage the brand display font */ 
+button, .btn, .cta { 
+ font-family: 'Roboto', Arial, sans-serif; 
+} 
+/* --- Buttons: size system using tokens --- */ 
+.btn { 
+ font-weight: var(--btn-font-weight); 
+ border-radius: var(--btn-radius); 
+ min-width: var(--btn-min-width); 
+ box-shadow: var(--btn-shadow); 
+ font-size: var(--btn-font-size-md); 
+ height: var(--btn-height-md); 
+ padding: var(--btn-pad-y-md) var(--btn-pad-x-md); 
+ gap: var(--btn-gap-md, var(--btn-gap)); 
+} 
+.btn--sm { 
+ font-size: var(--btn-font-size-sm); 
+ height: var(--btn-height-sm); 
+ padding: var(--btn-pad-y-sm) var(--btn-pad-x-sm); 
+ gap: var(--btn-gap-sm); 
+} 
+.btn--lg { 
+ font-size: var(--btn-font-size-lg); 
+ height: var(--btn-height-lg); 
+ padding: var(--btn-pad-y-lg) var(--btn-pad-x-lg); 
+ gap: var(--btn-gap-lg); 
+} 
+/* Compact density */ 
+.btn--compact { 
+ font-size: var(--btn-compact-font-size); 
+ height: var(--btn-compact-height); 
+ padding: var(--btn-compact-pad-y) var(--btn-compact-pad-x); 
+ gap: var(--btn-compact-gap); 
+} 
+/* Icon inside buttons */ 
+.btn > .icon { 
+ color: var(--btn-icon-color); 
+ opacity: var(--btn-icon-opacity); 
+ width: var(--btn-icon-size-md); 
+ height: var(--btn-icon-size-md); 
+} 
+/* Icon-only square button */ 
+.btn--icon { 
+ padding: 0; 
+ width: var(--btn-icon-only-size-md); 
+ height: var(--btn-icon-only-size-md); 
+ display: inline-grid; 
+ place-items: center; 
+ border-radius: var(--btn-icon-only-radius); 
+} 
+/* --- Top Bar --- */ 
+.top-bar { 
+ display: flex; 
+ align-items: center; 
+ justify-content: space-between; 
+ background: var(--navy); 
+ color: var(--white); 
+ padding: 0.5em 1em; 
+} 
+.worker-name { 
+ font-size: 1.5em; 
+ font-weight: bold; 
+ flex-basis: 66.66%; 
+ flex-grow: 1; 
+ overflow: hidden; 
+ text-overflow: ellipsis; 
+ white-space: nowrap; 
+} 
+#logout-btn { 
+ flex-basis: 33.33%; 
+ max-width: 120px; 
+ min-width: 60px; 
+ height: 35px; 
+ font-size: 1.3em; 
+ margin-left: 1em; 
+ display: flex; 
+ align-items: center; 
+ justify-content: center; 
+ background: var(--bg-page); 
+ color: var(--border-accent-warm); 
+ border: 2px solid var(--border-accent-warm); 
+ border-radius: 8px; 
+ transition: background 0.2s, color 0.2s; 
+ padding: 0; 
+} 
+#logout-btn:hover, 
+#logout-btn:focus { 
+ background: var(--border-accent-warm); 
+ color: var(--text-on-dark); 
+} 
+#logout-btn i { font-size: 1.2em; pointer-events: none; } 
+/* --- Keypad --- */ 
+#login-container { 
+ min-height: 100vh; 
+ display: flex; 
+ flex-direction: column; 
+ justify-content: center; 
+} 
+.keypad-container { 
+ width: 100%; 
+ max-width: 400px; 
+ margin: 0 auto; 
+ display: flex; 
+ flex-direction: column; 
+ align-items: center; 
+ justify-content: center; 
+ height: auto; 
+} 
+.keypad-grid { 
+ display: grid; 
+ grid-template-columns: repeat(3, 1fr); 
+ grid-template-rows: repeat(4, 1fr); 
+ gap: 14px; 
+ width: 100%; 
+ max-width: 400px; 
+ margin: 0 auto 1rem auto; 
+} 
+.keypad-btn { 
+ background: var(--btn-primary-bg) !important; 
+ color: var(--btn-primary-text) !important; 
+ border: none !important; 
+ border-radius: var(--btn-radius) !important; 
+ font-size: 2rem !important; 
+ width: 100%; 
+ height: 70px; 
+ min-width: 0; 
+ min-height: 0; 
+ padding: 0; 
+ display: flex; 
+ align-items: center; 
+ justify-content: center; 
+ user-select: none; 
+ -webkit-user-select: none; 
+ touch-action: manipulation; 
+ transition: background 0.2s; 
+} 
+.keypad-btn:active { filter: brightness(0.95); } 
+.keypad-btn:disabled { 
+ background: var(--btn-disabled-bg) !important; 
+ color: var(--btn-disabled-text) !important; 
+ border: 1px solid var(--btn-disabled-border) !important; 
+ cursor: not-allowed; 
+} 
+.keypad-btn.btn-outline-success, 
+.keypad-btn.btn-outline-success:disabled, 
+.keypad-btn.btn-outline-success.disabled { 
+ background: var(--bg-page) !important; 
+ color: var(--border-accent-warm) !important; 
+ border: 2px solid var(--border-accent-warm) !important; 
+ opacity: 1 !important; 
+} 
+.keypad-btn.btn-success { 
+ background: var(--border-accent-warm) !important; 
+ color: var(--text-on-dark) !important; 
+ border: 2px solid var(--border-accent-warm) !important; 
+} 
+.keypad-btn.btn-warning { 
+ background: var(--blue-light) !important; 
+ color: var(--text-default) !important; 
+ border: 2px solid var(--blue-mid) !important; 
+} 
+.keypad-btn.btn-danger { 
+ background: var(--orange-mid) !important; 
+ color: var(--text-default) !important; 
+ border: 2px solid var(--orange-dark) !important; 
+} 
+/* --- Pin Dots --- */ 
+.pin-dots { 
+ display: flex; 
+ flex-direction: row; 
+ justify-content: center; 
+ align-items: center; 
+ gap: 0.7em; 
+ font-size: 2rem; 
+ min-height: 2.5em; 
+ margin-bottom: 1rem; 
+ user-select: none; 
+ width: 100%; 
+ white-space: nowrap; 
+} 
+.pin-dots i { display: inline-block; width: 1em; text-align: center; } 
+/* --- Tags Grid (ORIGINAL) --- */ 
+#tags-container { 
+ overflow: auto; 
+ max-height: 80vh; 
+ max-width: 100vw; 
+} 
+.tags-grid-responsive { 
+ display: grid; 
+ /* Removed grid-auto-flow:dense to avoid Safari/WebKit packing issues */ 
+ grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); 
+ gap: 16px; 
+ align-items: start; /* ensure rows size to item content */ 
+} 
+/* Ratio box technique for 3:4 tiles */ 
+.tag.position-relative { 
+ position: relative; 
+ overflow: hidden; 
+ background: var(--bg-surface); 
+ color: var(--text-default); 
+ border-radius: 12px; 
+ border: 1px solid var(--border-subtle); 
+ width: 100%; 
+} 
+.tag.position-relative::before { 
+ content: ""; 
+ display: block; 
+ /* 3:4 card => height = width * (4/3) */ 
+ padding-top: calc(100% * 4 / 3); 
+} 
+.tag img.img-thumbnail { 
+ position: absolute; 
+ inset: 0; 
+ width: 100%; 
+ height: 100%; 
+ border-radius: inherit; 
+ display: block; 
+ cursor: pointer; 
+ object-fit: cover; 
+ margin: 0; 
+} 
+.barcode-label { 
+ position: absolute; 
+ top: 6px; left: 6px; 
+ background: var(--orange-mid); 
+ color: var(--text-default); 
+ padding: 2px 6px; 
+ border-radius: 6px; 
+ font-size: 0.85em; 
+ font-weight: bold; 
+ z-index: 2; 
+ box-shadow: 0 1px 4px rgba(0,0,0,0.08); 
+} 
+/* --- Modal (Login Error) --- */ 
+#login-error-modal .modal-content { 
+ background: var(--bg-page); 
+ color: var(--text-default); 
+ border: 1px solid var(--border-subtle); 
+ border-radius: 12px; 
+} 
+#login-error-modal .modal-header { border-bottom: 1px solid var(--border-subtle); } 
+#login-error-modal .modal-title { color: var(--border-accent-warm); } 
+#login-error-modal .modal-dialog { 
+ display: flex; 
+ align-items: center; 
+ min-height: 100vh; 
+ justify-content: center; 
+} 
+#login-error-modal .modal-title, 
+#login-error-modal .modal-body { font-size: 1.35em; } 
+#login-error-modal .btn { 
+ width: 38%; 
+ min-width: 90px; 
+ max-width: 180px; 
+ height: 2.5em; 
+ margin: 0 auto; 
+ display: block; 
+ font-size: 1.1em; 
+} 
+/* --- Image Viewer Modal --- */ 
+.image-viewer-modal-header { 
+ background: transparent !important; 
+ border: 0 !important; 
+ position: absolute !important; 
+ top: 0; 
+ right: 0; 
+ z-index: 3; 
+} 
+.image-viewer-modal-body { 
+ padding: 0 !important; 
+ margin: 0 !important; 
+ display: flex !important; 
+ align-items: center !important; 
+ justify-content: center !important; 
+ height: 100vh !important; 
+} 
+#image-zoom-container { 
+ width: 100vw; 
+ height: 100vh; 
+ overflow: hidden; 
+ touch-action: none; 
+ position: relative; 
+} 
+/* --- Utilities --- */ 
+.hl-warm { background: var(--hl-warm-bg); color: var(--hl-warm-text); } 
+.hl-cool { background: var(--hl-cool-bg); color: var(--hl-cool-text); } 
+.hl-inverse { background: var(--hl-inverse-bg); color: var(--hl-inverse-text); } 
+.vintage-border { 
+ border: 4px solid var(--orange-mid); 
+ border-radius: 16px; 
+ box-shadow: 0 4px 24px rgba(11,39,72,0.08); 
+} 
+/* Accessibility utility */ 
+.sr-only { 
+ position: absolute !important; 
+ width: 1px !important; height: 1px !important; 
+ padding: 0 !important; margin: -1px !important; overflow: hidden !important; 
+ clip: rect(0, 0, 0, 0) !important; white-space: nowrap !important; border: 0 !important; 
+} 
+/* --- Keypad Card & Header --- */ 
+.keypad-card { 
+ background: var(--bg-surface); 
+ border: 1px solid var(--border-subtle); 
+ border-radius: 12px; 
+ color: var(--text-default); 
+ padding: 16px; 
+} 
+.pin-header { 
+ display: grid; 
+ grid-template-columns: 1fr auto; 
+ align-items: center; 
+ gap: 12px; 
+ margin: 12px 0; 
+} 
+/* --- Keypad layout --- */ 
+.keypad { 
+ display: grid !important; 
+ grid-template-columns: repeat(3, 1fr) !important; 
+ gap: 14px !important; 
+ width: 100% !important; 
+ max-width: 420px; 
+ margin-inline: auto !important; 
+ justify-items: stretch !important; 
+ align-items: stretch !important; 
+} 
+.keypad-row { display: contents; } /* rows flow into the grid */ 
+.keypad .keypad-btn, 
+.keypad button { 
+ box-sizing: border-box; 
+ width: 100% !important; 
+ height: clamp(56px, 9vw, 72px) !important; 
+ margin: 0 !important; 
+ padding: 0 !important; 
+ display: inline-flex !important; 
+ align-items: center; 
+ justify-content: center; 
+ font-size: 2rem; 
+} 
+.keypad .keypad-btn[data-key="backspace"], 
+.keypad .keypad-btn[data-key="login"] { 
+ display: inline-flex !important; 
+ align-items: center !important; 
+ justify-content: center !important; 
+} 
+.keypad .keypad-btn[data-key="backspace"] i, 
+.keypad .keypad-btn[data-key="login"] i { 
+ font-size: 1em !important; 
+ line-height: 1 !important; 
+} 
+/* Focus outline for keypad buttons */ 
+.keypad button:focus { 
+ outline: 2px solid var(--blue-mid); 
+ outline-offset: 2px; 
+} 
+/* Remove per-button margins (use grid gap instead) */ 
+.keypad .keypad-btn { margin: 0 !important; } 
+/* --- Shake animation & Error states --- */ 
+@keyframes shake-x { 
+ 0% { transform: translateX(0); } 
+ 20% { transform: translateX(-6px); } 
+ 40% { transform: translateX(6px); } 
+ 60% { transform: translateX(-4px); } 
+ 80% { transform: translateX(4px); } 
+ 100% { transform: translateX(0); } 
+} 
+.keypad-card.is-shaking { animation: shake-x 400ms ease; } 
+.keypad-card.is-error { 
+ border-color: var(--btn-danger-border); 
+ box-shadow: 
+ 0 0 0 var(--focus-ring-offset) transparent, 
+ 0 0 0 calc(var(--focus-ring-offset) + 2px) var(--border-accent-warm); 
+} 
+.pin-dots.is-error { 
+ background: var(--hl-warm-bg); 
+ color: var(--hl-warm-text); 
+ border-radius: 6px; 
+ padding: 2px 6px; 
+} 
+/* Inline error message box */ 
+#keypad-error { 
+ display: none; 
+ margin-top: 8px; 
+ padding: 6px 8px; 
+ border-radius: 8px; 
+ border: 1px solid var(--border-accent-warm); 
+ background: var(--hl-warm-bg); 
+ color: var(--hl-warm-text); 
+ font-size: 0.875rem; 
+} 
+/* --- Responsive Styles (layout consumers only) --- */ 
+@media (max-width: 599px) and (orientation: portrait) { 
+ .tags-grid-responsive { grid-template-columns: repeat(2, 1fr); } 
+} 
+@media (max-width: 899px) and (orientation: landscape) { 
+ .tags-grid-responsive { grid-template-columns: repeat(4, 1fr); } 
+} 
+@media (min-width: 600px) and (max-width: 1023px) and (orientation: portrait) { 
+ .tags-grid-responsive { grid-template-columns: repeat(3, 1fr); } 
+} 
+@media (min-width: 600px) and (max-width: 1279px) and (orientation: landscape) { 
+ .tags-grid-responsive { grid-template-columns: repeat(5, 1fr); } 
+} 
+@media (min-width: 1024px) { 
+ .tags-grid-responsive { grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); } 
+} 
+@media (max-width: 500px) { 
+ .keypad-container, .keypad-grid { max-width: 98vw; } 
+ .keypad-btn { height: 48px; font-size: 1.3rem; } 
+ .pin-dots { font-size: 1.3rem; gap: 0.5em; } 
+} 
+@media (max-width: 600px) { 
+ .modal-dialog { margin: 0.5rem; max-width: 98vw; } 
+ .modal-content { border-radius: 12px; } 
+} 
+/* iPhone 11+ and nearby PORTRAIT mode (WebKit-fenced) */ 
+@supports (-webkit-touch-callout: none) { 
+ @media screen 
+ and (orientation: portrait) 
+ and (min-device-width: 360px) and (max-device-width: 430px) 
+ and (min-device-height: 780px) and (max-device-height: 932px) 
+ and (-webkit-min-device-pixel-ratio: 2) { 
+ .keypad-container, 
+ .keypad-grid { 
+ width: 85vw !important; 
+ max-width: 85vw !important; 
+ margin-left: auto; 
+ margin-right: auto; 
+ } 
+ } 
+ .barcode-label { font-size: 2em !important; } 
+} 
+/* iPad landscape barcode font size */ 
+@media (min-width: 1024px) and (max-width: 1400px) and (orientation: landscape) { 
+ .barcode-label { font-size: 1.3em !important; } 
+} 
+/* ==== Minimal Additions (Grid reliability & skeletons) ==== */ 
+/* Ensure the sentinel occupies a full grid row at the end */ 
+#scroll-sentinel { grid-column: 1 / -1; height: 200px; } 
+/* Skeleton placeholders (match 3:4 aspect using the same ratio-box) */ 
+.tag.position-relative.skeleton { background: var(--bg-surface); position: relative; overflow: hidden; } 
+.tag.position-relative.skeleton::before { content: ""; display: block; padding-top: calc(100% * 4 / 3); } 
+.tag.position-relative.skeleton .skeleton-shimmer { position:absolute; inset:0; border-radius:inherit; background:linear-gradient(90deg, rgba(0,0,0,0.04) 25%, rgba(0,0,0,0.08) 37%, rgba(0,0,0,0.04) 63%); background-size:400% 100%; animation:skeleton-shimmer 1.2s linear infinite; } 
+.tag.position-relative.skeleton .skeleton-pill { position:absolute; top:6px; left:6px; width:64px; height:18px; border-radius:6px; background:linear-gradient(90deg, rgba(0,0,0,0.06) 25%, rgba(0,0,0,0.10) 37%, rgba(0,0,0,0.06) 63%); background-size:400% 100%; animation:skeleton-shimmer 1.2s linear infinite; z-index:2; } 
+@keyframes skeleton-shimmer { 0%{background-position:100% 0} 100%{background-position:0 0} } 
+@media (prefers-reduced-motion: reduce) { .tag.position-relative.skeleton .skeleton-shimmer, .tag.position-relative.skeleton .skeleton-pill { animation:none; } } 
+/* styles/image-viewer.patch.css */ 
+/* Ensure the full-image is truly centered and transforms around its center */ 
+#image-zoom-container { position: relative; overflow: hidden; touch-action: none; } 
+#full-image { 
+ position: absolute; 
+ top: 50%; 
+ left: 50%; 
+ transform: translate(-50%, -50%); 
+ transform-origin: center center; 
+ will-change: transform; 
+ user-select: none; 
+ -webkit-user-drag: none; 
+ pointer-events: auto; 
+}
